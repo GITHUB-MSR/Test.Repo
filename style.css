@@ -10,6 +10,10 @@
   --color-foreground: #ffffff;
   --color-gray: #838383;
   --color-dark-gray: #333333;
+  --color-light-background: #ffffff;
+  --color-light-foreground: #000000;
+  --color-light-gray: #cccccc;
+  --color-light-dark-gray: #666666;
 }
 
 body {
@@ -59,7 +63,7 @@ body {
 }
 
 .task-status:checked {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='405.272' height='405.272'%3e%3cpath d='M393.401 124.425L179.603 338.208c-15.832 15.835-41[...");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='405.272' height='405.272'%3e%3cpath d='M393.401 124.425L179.603 338.208c-15.832 15.835-41[...]");
   background-size: 10px;
   background-color: var(--color-gray);
   border-color: var(--color-gray);
@@ -182,7 +186,7 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: transparent;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23dc4771' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 174.239 174.239'%3e%3cpath d='M87.12 0C39.082 0 0 39.082 0 87.12s[...");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23dc4771' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 174.239 174.239'%3e%3cpath d='M87.12 0C39.082 0 0 39.082 0 87.12s[...]");
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
@@ -198,7 +202,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23f4f4f4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 486.463 486.463'%3e%3cpath d='M243.225 333.382c-13.6 0-25 11.4-25[...");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23f4f4f4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 486.463 486.463'%3e%3cpath d='M243.225 333.382c-13.6 0-25 11.4-25[...]");
   background-repeat: no-repeat;
   background-position: center;
   font-weight: 500;
@@ -210,4 +214,62 @@ body {
   .task-delete {
     display: block;
   }
+}
+
+body.light-mode {
+  background-color: var(--color-light-background);
+  color: var(--color-light-foreground);
+}
+
+.app.light-mode {
+  background-color: var(--color-light-dark-gray);
+  color: var(--color-light-foreground);
+}
+
+.task-status.light-mode {
+  border-color: var(--color-light-gray);
+  background-color: var(--color-light-dark-gray);
+}
+
+.task-status:checked.light-mode {
+  background-color: var(--color-light-gray);
+  border-color: var(--color-light-gray);
+}
+
+.task-item:hover.light-mode {
+  background-color: var(--color-light-gray);
+}
+
+.task-filter.light-mode {
+  color: var(--color-light-gray);
+}
+
+.task-filter.is-active.light-mode {
+  background-color: var(--color-light-gray);
+  color: var(--color-light-foreground);
+}
+
+.task-count.light-mode {
+  color: var(--color-light-gray);
+}
+
+.task-input.light-mode {
+  color: var(--color-light-foreground);
+  box-shadow: 0 -1px 0 var(--color-light-gray) inset;
+}
+
+.task-input::-moz-placeholder.light-mode {
+  color: var(--color-light-gray);
+}
+
+.task-input:-ms-input-placeholder.light-mode {
+  color: var(--color-light-gray);
+}
+
+.task-input::placeholder.light-mode {
+  color: var(--color-light-gray);
+}
+
+.task-input:focus.light-mode {
+  box-shadow: 0 -1px 0 var(--color-light-gray) inset;
 }

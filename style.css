@@ -6,10 +6,11 @@
 
 :root {
   --font: "DM Sans", sans-serif;
-  --color-background: #121212;
-  --color-foreground: #ffffff;
+  --color-background: #1e1e1e;
+  --color-foreground: #e0e0e0;
   --color-gray: #838383;
   --color-dark-gray: #333333;
+  --color-accent: #007acc;
   --color-light-background: #ffffff;
   --color-light-foreground: #000000;
   --color-light-gray: #cccccc;
@@ -63,7 +64,7 @@ body {
 }
 
 .task-status:checked {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='405.272' height='405.272'%3e%3cpath d='M393.401 124.425L179.603 338.208c-15.832 15.835-41[...]");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='405.272' height='405.272'%3e%3cpath d='M393.401 124.425L179.603 338.208c-15.832 15.835-41[...");
   background-size: 10px;
   background-color: var(--color-gray);
   border-color: var(--color-gray);
@@ -87,7 +88,7 @@ body {
 }
 
 .task-item:hover {
-  background-color: var(--color-gray);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .task-name {
@@ -104,7 +105,7 @@ body {
 }
 
 .task-item.is-completed {
-  background-color: rgba(131, 131, 131, 0.1);
+  background-color: rgba(0, 122, 204, 0.1);
 }
 
 .task-header-title {
@@ -157,6 +158,9 @@ body {
   border: 0;
   box-shadow: 0 -1px 0 var(--color-gray) inset;
   color: var(--color-foreground);
+  background-color: #2e2e2e;
+  border: 1px solid #444;
+  border-radius: 4px;
 }
 
 .task-input::-moz-placeholder {
@@ -173,10 +177,19 @@ body {
 
 .task-input:focus {
   box-shadow: 0 -1px 0 var(--color-gray) inset;
+  border-color: var(--color-accent);
+  outline: none;
 }
 
 .task-button {
   display: none;
+  background-color: var(--color-accent);
+  color: var(--color-foreground);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .task-delete {
@@ -186,7 +199,7 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: transparent;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23dc4771' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 174.239 174.239'%3e%3cpath d='M87.12 0C39.082 0 0 39.082 0 87.12s[...]");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23dc4771' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 174.239 174.239'%3e%3cpath d='M87.12 0C39.082 0 0 39.082 0 87.12s[...");
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
@@ -202,7 +215,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23f4f4f4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 486.463 486.463'%3e%3cpath d='M243.225 333.382c-13.6 0-25 11.4-25[...]");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg fill='%23f4f4f4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 486.463 486.463'%3e%3cpath d='M243.225 333.382c-13.6 0-25 11.4-25[...");
   background-repeat: no-repeat;
   background-position: center;
   font-weight: 500;

@@ -49,6 +49,19 @@ class Todo {
     };
   }
 
+  saveToLocalStorage() {
+    localStorage.setItem('todoData', JSON.stringify(this.data));
+  }
+
+  loadFromLocalStorage() {
+    const storedData = localStorage.getItem('todoData');
+    if (storedData) {
+      this.data = JSON.parse(storedData);
+      this.filteredData = this.data;
+      this.count = this.data.length;
+    }
+  }
+
   elementCreator(options) {
     const config = { ...this.elementDefaults, ...options };
     const elementNode = document.createElement(config.type);
@@ -72,7 +85,7 @@ class Todo {
 
     return elementNode;
   }
-
+  
   updateCount() {
     this.count = this.data.length;
     this.nodes.count.innerHTML =
@@ -111,6 +124,7 @@ class Todo {
     this.onAdded(newTask);
     this.updateCount();
     this.filterData();
+    this.saveToLocalStorage();
   }
 
   filterData(e, param = null, value = null) {
@@ -148,6 +162,7 @@ class Todo {
     this.data = updatedData;
     this.onStatusChanged(taskId);
     this.filterData();
+    this.saveToLocalStorage();
   }
 
   deleteTask(e, id = null) {
@@ -159,6 +174,7 @@ class Todo {
     this.onDeleted(taskId);
     this.updateCount();
     this.filterData();
+    this.saveToLocalStorage();
   }
 
   generalUI() {
@@ -281,53 +297,54 @@ class Todo {
       }
 
       data.forEach(task => {
-      const item = this.elementCreator({
-        attributes: {
-          class: `task-item${task.completed ? " is-completed" : ""}`
-        },
-        container: this.nodes.list
-      });
+        const item = this.elementCreator({
+          attributes: {
+            class: `task-item${task.completed ? " is-completed" : ""}`
+          },
+          container: this.nodes.list
+        });
 
-      const checkbox = this.elementCreator({
-        type: "input",
-        attributes: {
-          class: "task-status",
-          type: "checkbox",
-          checked: task.completed ? task.completed : null,
-          "data-id": task.id
-        },
-        events: {
-          change: { action: this.toggleStatus, api: true }
-        },
-        container: item
-      });
+        const checkbox = this.elementCreator({
+          type: "input",
+          attributes: {
+            class: "task-status",
+            type: "checkbox",
+            checked: task.completed ? task.completed : null,
+            "data-id": task.id
+          },
+          events: {
+            change: { action: this.toggleStatus, api: true }
+          },
+          container: item
+        });
 
-      const name = this.elementCreator({
-        type: "label",
-        markup: task.name,
-        attributes: {
-          class: "task-name"
-        },
-        container: item
-      });
+        const name = this.elementCreator({
+          type: "label",
+          markup: task.name,
+          attributes: {
+            class: "task-name"
+          },
+          container: item
+        });
 
-      const button = this.elementCreator({
-        type: "button",
-        markup: "",
-        attributes: {
-          class: "task-delete",
-          "data-id": task.id
-        },
-        events: {
-          click: { action: this.deleteTask, api: true }
-        },
-        container: item
+        const button = this.elementCreator({
+          type: "button",
+          markup: "",
+          attributes: {
+            class: "task-delete",
+            "data-id": task.id
+          },
+          events: {
+            click: { action: this.deleteTask, api: true }
+          },
+          container: item
+        });
       });
-    });
     });
   }
 
   init() {
+    this.loadFromLocalStorage();
     this.generalUI();
     this.formUI();
     this.listUI();
@@ -370,19 +387,10 @@ const TodoApp = new Todo({
 
 TodoApp.init();
 
-// Please open the console to see changes
 TodoApp.onAdded = task => console.log("Added", task);
 TodoApp.onDeleted = id => console.log("Deleted, id: ", id);
 TodoApp.onStatusChanged = id => console.log("Status changed, id:", id);
 
-// Add Task
 TodoApp.addTask({ id: -6 });
-
-// Delete Task
 TodoApp.deleteTask(null, -6);
-
-// Toggle Status
 TodoApp.toggleStatus(null, -5);
-
-// Filter Data
-// TodoApp.filterData(null, "completed", "true");
